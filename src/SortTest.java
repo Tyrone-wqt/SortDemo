@@ -2,12 +2,18 @@
  * Created by 127-72 on 2016/8/10.
  */
 public class SortTest {
-    public static void main(String[] args){
-        int[] input=new int[]{45 ,12 ,45 ,32, 5, 6};
-        SortAlgorithm sortAlgorithm=new SortAlgorithm();
+    public static void main(String[] args) {
+        int[] input = new int[]{45, 12, 45, 32, 5, 6};
+        SortAlgorithm sortAlgorithm = new SortAlgorithm();
         //sortAlgorithm.quickSort(input,0,input.length-1);
         //sortAlgorithm.mergeSort(input,0,input.length-1);
+        //sortAlgorithm.heapSort(input);
+//sortAlgorithm.bubbleSort(input);
+        //sortAlgorithm.insertSort(input);
+        //sortAlgorithm.selectSort(input);
+//sortAlgorithm.binarySort(input);
+       // sortAlgorithm.bucketSort(input,4,46);
+       // sortAlgorithm.shellSort(input);
         sortAlgorithm.heapSort(input);
-
     }
 }
