@@ -56,4 +56,14 @@ public class Algorithm {
             System.out.print(array[i]);
         }
     }
+
+    public void swap(Integer i1,Integer i2){
+        Integer temp=i1;
+        i1=i2;
+        i2=temp;
+    }
+
+    public void changeStringVaule(String s){
+        s=s+"3";
+    }
 }
