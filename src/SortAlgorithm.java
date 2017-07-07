@@ -35,7 +35,9 @@ public class SortAlgorithm {
         quickSort(array, start, j - 1);
         quickSort(array, j + 1, end);
         printSortedArray(array);
+
     }
+
 
     /*-----------------------------------------------------*/
     //归并排序
@@ -131,32 +133,32 @@ public class SortAlgorithm {
         }
     }*/
 
-    public void heapSort(int[] array){
-        if(array==null||array.length<=1) return;
-        buildMaxHeap(array,array.length);
+    public void heapSort(int[] array) {
+        if (array == null || array.length <= 1) return;
+        buildMaxHeap(array, array.length);
         printSortedArray(array);
-        for(int i=array.length-1;i>0;i--){
-            swap(array,0,i);
-            maxHeapify(array,0,i);
+        for (int i = array.length - 1; i > 0; i--) {
+            swap(array, 0, i);
+            maxHeapify(array, 0, i);
         }
         printSortedArray(array);
     }
 
     private void buildMaxHeap(int[] array, int heapSize) {
-        for(int i=(heapSize-2)/2;i>=0;i--){//i=(lastIndex-1)/2;
-            maxHeapify(array,i,heapSize);
+        for (int i = (heapSize - 2) / 2; i >= 0; i--) {//i=(lastIndex-1)/2;
+            maxHeapify(array, i, heapSize);
         }
     }
 
     private void maxHeapify(int[] array, int index, int heapSize) {
-        int l=2*index+1;
-        int r=l+1;
-        int largest=index;
-        if(l<heapSize&&array[l]>array[largest]) largest=l;
-        if(r<heapSize&&array[r]>array[largest]) largest=r;
-        if(largest!=index){
-            swap(array,largest,index);
-            maxHeapify(array,largest,heapSize);
+        int l = 2 * index + 1;
+        int r = l + 1;
+        int largest = index;
+        if (l < heapSize && array[l] > array[largest]) largest = l;
+        if (r < heapSize && array[r] > array[largest]) largest = r;
+        if (largest != index) {
+            swap(array, largest, index);
+            maxHeapify(array, largest, heapSize);
         }
     }
 
@@ -165,16 +167,22 @@ public class SortAlgorithm {
      * ----------------------------------------
      */
     //冒泡排序
-    public void bubbleSort(int[] array) {
-        if (array == null || array.length == 0) return;
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[i] > array[j]) {
-                    swap(array, i, j);
+    public void bubbleSort(int[] data) {
+        for (int i = 0; i < data.length - 1; i++) {
+            // 记录某趟是否发生交换，若为false表示数组已处于有序状态
+            boolean isSorted = false;
+            for (int j = 0; j < data.length - i - 1; j++) {
+                if (data[j] > data[j + 1]) {
+                    swap(data, j, j + 1);
+                    isSorted = true;
+
                 }
             }
+            if (!isSorted) {
+                // 若数组已处于有序状态，结束循环
+                break;
+            }
         }
-        printSortedArray(array);
     }
 
     /*
@@ -201,30 +209,31 @@ public class SortAlgorithm {
 
     /**
      * 希尔排序
+     *
      * @param array
      */
-    public void shellSort(int[] array){
+    public void shellSort(int[] array) {
         if (array == null || array.length == 0) return;
         //计算最大h
-        int h=1;
-        while(h<=array.length){
-            h=3*h+1;
+        int h = 1;
+        while (h <= array.length) {
+            h = 3 * h + 1;
         }
-        while(h>0){
-            for(int i=h;i<array.length;i=i+h){
-                if(array[i]<array[i-h]){
-                    int temp=array[i];
-                    int j=i-h;
-                    while(j>=0&&array[j]>temp){
-                        array[j+h]=array[j];
-                        j=j-h;
+        while (h > 0) {
+            for (int i = h; i < array.length; i = i + h) {
+                if (array[i] < array[i - h]) {
+                    int temp = array[i];
+                    int j = i - h;
+                    while (j >= 0 && array[j] > temp) {
+                        array[j + h] = array[j];
+                        j = j - h;
                     }
-                    array[j+h]=temp;
+                    array[j + h] = temp;
                     printSortedArray(array);
                 }
             }
             //计算下一个h
-            h=(h-1)/3;
+            h = (h - 1) / 3;
         }
         printSortedArray(array);
     }
@@ -279,6 +288,10 @@ public class SortAlgorithm {
         printSortedArray(array);
     }
 
+    /**
+     * ---------------------------------------------
+     * 桶排血
+     */
     public void bucketSort(int[] array, int min, int max) {
         if (array == null || array.length == 0) return;
         int[] temp = new int[array.length];
